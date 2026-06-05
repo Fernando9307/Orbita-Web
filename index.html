@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Órbita Co. — Estudio de consultoría de Customer Success y crecimiento para empresas B2B SaaS y tech. Te ayudamos a construir journeys escalables, sistemas de retención y expansión de ingresos." />
+  <title>Órbita Co. — Consultoría de Customer Success y Crecimiento</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-primary: #0B0D12;
+      --bg-secondary: #171A22;
+      --bg-card: #1A1E2A;
+      --bg-card-hover: #202535;
+      --border: #252B3A;
+      --border-light: #303850;
+      --gold: #D9C80F;
+      --gold-light: #F0DE2A;
+      --gold-dim: rgba(217,200,15,0.12);
+      --text-primary: #F4F1E8;
+      --text-secondary: #9AA3B2;
+      --text-muted: #5A6478;
+      --accent: #6D5EF8;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1,h2,h3,h4,h5 { font-family: 'DM Serif Display', Georgia, serif; line-height: 1.15; font-weight: 400; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: 'Inter', sans-serif; }
+    img { max-width: 100%; height: auto; }
+    ::selection { background: var(--gold-dim); color: var(--gold); }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      transition: all 0.3s ease;
+    }
+    .navbar-inner {
+      margin: 20px 24px;
+      background: rgba(11,13,18,0.4);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      transition: all 0.3s ease;
+    }
+    .navbar-inner.scrolled {
+      margin: 12px 24px;
+      background: rgba(11,13,18,0.85);
+      border-color: var(--border-light);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .navbar-logo { display: flex; align-items: center; gap: 10px; }
+    .navbar-logo img { height: 28px; }
+    .navbar-links { display: flex; align-items: center; gap: 4px; }
+    .navbar-links a {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+    .navbar-links a:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
+    .navbar-cta {
+      background: var(--gold);
+      color: #0A0A0B;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 8px 18px;
+      border: none;
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.04em;
+      transition: var(--transition);
+      text-transform: uppercase;
+    }
+    .navbar-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .navbar-mobile-btn { display: none; background: none; border: none; color: var(--text-primary); }
+    .mobile-menu {
+      display: none;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
+    .mobile-menu-cta {
+      margin-top: 8px;
+      background: var(--gold);
+      color: #0A0A0B;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 12px 20px;
+      border: none;
+      border-radius: var(--radius-sm);
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 24px 80px;
+    }
+    .hero-bg1 {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(217,200,15,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-content {
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--gold-dim);
+      border: 1px solid rgba(217,200,15,0.25);
+      border-radius: 4px;
+      padding: 5px 14px;
+      color: var(--gold);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    .hero-title {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      color: var(--text-primary);
+      margin-bottom: 28px;
+      letter-spacing: -0.02em;
+    }
+    .hero-title em { font-style: italic; color: var(--gold); }
+    .hero-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin: 0 auto 48px;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: #0A0A0B;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 14px 28px;
+      border: none;
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: var(--transition);
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(217,200,15,0.25); }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 14px 28px;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+    .hero-divider { margin-top: 80px; display: flex; align-items: center; justify-content: center; gap: 20px; }
+    .hero-divider span { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+    .hero-divider-line { height: 1px; width: 80px; background: var(--border); }
+
+    /* MANIFESTO */
+    .manifesto {
+      padding: 100px 24px;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+    .manifesto-inner { max-width: 800px; margin: 0 auto; }
+    .section-badge {
+      display: inline-block;
+      background: var(--gold-dim);
+      border: 1px solid rgba(217,200,15,0.2);
+      border-radius: 4px;
+      padding: 4px 12px;
+      color: var(--gold);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    .manifesto blockquote {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.8rem);
+      color: var(--text-primary);
+      line-height: 1.3;
+      margin-bottom: 32px;
+    }
+    .manifesto blockquote em { font-style: italic; color: var(--gold); }
+    .manifesto p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .manifesto-logo { margin-top: 40px; display: flex; align-items: center; justify-content: center; gap: 20px; }
+    .manifesto-logo-line { width: 60px; height: 1px; background: var(--border-light); }
+
+    /* SERVICES */
+    .services { padding: 100px 24px; }
+    .section-header { max-width: 600px; margin: 0 auto 64px; text-align: center; }
+    .section-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--text-primary); margin-bottom: 16px; }
+    .section-subtitle { color: var(--text-secondary); font-size: 1rem; line-height: 1.7; }
+    .services-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 32px;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .service-card:hover { border-color: var(--gold); background: var(--bg-card-hover); transform: translateY(-2px); }
+    .service-icon {
+      width: 44px; height: 44px;
+      background: var(--gold-dim);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      color: var(--gold);
+    }
+    .service-icon svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .service-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--text-primary); margin-bottom: 12px; }
+    .service-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px; }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+    .service-tag {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 3px 8px;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .services-cta { text-align: center; margin-top: 48px; }
+
+    /* PROCESS */
+    .process { padding: 100px 24px; background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .process-steps { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+    .process-step { display: flex; gap: 32px; padding: 40px 0; border-bottom: 1px solid var(--border); }
+    .process-step:last-child { border-bottom: none; }
+    .step-number {
+      width: 48px; height: 48px; min-width: 48px;
+      border: 1px solid var(--border-light);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+    .step-content h3 { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--text-primary); margin-bottom: 8px; }
+    .step-content p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
+    .step-duration { display: inline-block; margin-top: 8px; font-size: 0.75rem; color: var(--gold); font-weight: 600; letter-spacing: 0.06em; }
+
+    /* WHY ORBITA */
+    .why { padding: 100px 24px; }
+    .why-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .why-sticky { position: sticky; top: 120px; }
+    .why-sticky h2 { font-size: clamp(2rem, 4vw, 3rem); color: var(--text-primary); margin-bottom: 20px; }
+    .why-sticky p { color: var(--text-secondary); font-size: 1rem; line-height: 1.7; margin-bottom: 32px; }
+    .why-list { display: flex; flex-direction: column; gap: 24px; }
+    .why-item { display: flex; gap: 16px; }
+    .why-check { color: var(--gold); margin-top: 2px; flex-shrink: 0; }
+    .why-check svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+    .why-item h4 { font-family: 'DM Serif Display', serif; font-size: 1.05rem; color: var(--text-primary); margin-bottom: 4px; }
+    .why-item p { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6; }
+
+    /* CONTACT */
+    .contact { padding: 100px 24px; background: var(--bg-secondary); border-top: 1px solid var(--border); }
+    .contact-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
+    .contact-info h2 { font-size: clamp(2rem, 4vw, 3rem); color: var(--text-primary); margin-bottom: 16px; }
+    .contact-info > p { color: var(--text-secondary); font-size: 1rem; line-height: 1.7; margin-bottom: 40px; }
+    .contact-options { display: flex; flex-direction: column; gap: 16px; }
+    .contact-option {
+      display: flex; align-items: center; gap: 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      transition: var(--transition);
+    }
+    .contact-option:hover { border-color: var(--gold); }
+    .contact-option-icon { color: var(--gold); }
+    .contact-option-icon svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .contact-option h4 { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; }
+    .contact-option p { font-size: 0.8rem; color: var(--text-secondary); }
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.04em; text-transform: uppercase; }
+    .form-group input, .form-group select, .form-group textarea {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      outline: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-group select { appearance: none; cursor: pointer; }
+    .form-group select option { background: var(--bg-card); }
+    .form-submit {
+      background: var(--gold);
+      color: #0A0A0B;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 14px 24px;
+      border: none;
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: var(--transition);
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .form-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .form-success { text-align: center; padding: 40px 20px; color: var(--gold); }
+    .form-success h3 { font-size: 1.5rem; margin-bottom: 8px; }
+    .form-success p { color: var(--text-secondary); }
+
+    /* FOOTER */
+    .footer { padding: 48px 24px; border-top: 1px solid var(--border); background: var(--bg-primary); }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; }
+    .footer-logo span { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--text-primary); }
+    .footer-copy { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* WHATSAPP BUTTON */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: #25D366;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 9999;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(37,211,102,0.4); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; gap: 48px; }
+      .why-sticky { position: static; }
+      .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .navbar-links, .navbar-cta { display: none; }
+      .navbar-mobile-btn { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner" id="navbar-inner">
+      <a href="#" class="navbar-logo">
+        <img src="https://i.imgur.com/placeholder.png" alt="Órbita Co." id="navbar-logo-img" onerror="this.style.display='none'">
+        <span style="font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--text-primary)">Órbita Co.</span>
+      </a>
+      <div class="navbar-links">
+        <a href="#services">Servicios</a>
+        <a href="#process">Proceso</a>
+        <a href="#why">¿Por qué Órbita?</a>
+      </div>
+      <a href="https://calendar.app.google/YtzPHUGffMd1rZqU8" target="_blank" rel="noopener noreferrer" class="navbar-cta">Agendar Discovery</a>
+      <button class="navbar-mobile-btn" onclick="toggleMenu()" aria-label="Menú">
+        <svg id="menu-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg id="close-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#services" onclick="closeMenu()">Servicios</a>
+      <a href="#process" onclick="closeMenu()">Proceso</a>
+      <a href="#why" onclick="closeMenu()">¿Por qué Órbita?</a>
+      <a href="https://calendar.app.google/YtzPHUGffMd1rZqU8" target="_blank" class="mobile-menu-cta">Agendar Discovery</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg1"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+        CONVERTIMOS CUSTOMER SUCCESS EN CRECIMIENTO ESTRATÉGICO
+      </div>
+      <h1 class="hero-title">
+        Del caos operativo<br>
+        al <em>crecimiento<br>escalable</em>
+      </h1>
+      <p class="hero-subtitle">
+        Cada proceso se construye desde tu operación actual, con foco en retención, expansión y claridad operativa.
+      </p>
+      <div class="hero-ctas">
+        <a href="https://calendar.app.google/YtzPHUGffMd1rZqU8" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          Agendar discovery
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#services" class="btn-secondary">
+          Ver servicios
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="hero-divider">
+        <div class="hero-divider-line"></div>
+        <span>Consultoría estratégica para empresas tech en crecimiento</span>
+        <div class="hero-divider-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section class="manifesto">
+    <div class="manifesto-inner">
+      <div class="section-badge">Nuestra Convicción</div>
+      <blockquote>
+        Trabajamos con SaaS B2B, fintech, healthtech, edtech y cualquier empresa tech-enabled que venda a otras empresas y quiera construir una operación de cliente que retenga y expanda.
+        <br><br>
+        <em>Si tienes clientes que pagan de forma recurrente y quieres que se queden — y crezcan — esto es para ti.</em>
+      </blockquote>
+      <p>Existimos para ayudar a fundadores y líderes de SaaS a construir el motor operativo que convierte clientes en embajadores, y primeras ventas en ingresos de largo plazo.</p>
+      <div class="manifesto-logo">
+        <div class="manifesto-logo-line"></div>
+        <img src="orbita-isotipo2.png" alt="Órbita Co." style="height:52px;width:auto;opacity:0.8">
+        <div class="manifesto-logo-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="section-header">
+      <div class="section-badge">Servicios</div>
+      <h2 class="section-title">Consultoría estratégica <em style="font-style:italic;color:var(--gold)">para empresas tech en crecimiento</em></h2>
+      <p class="section-subtitle">Trabajamos con SaaS B2B, fintech, healthtech, edtech y cualquier empresa tech-enabled que venda a otras empresas y quiera construir una operación de cliente que retenga y expanda.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </div>
+        <h3>Diseño del Journey del Cliente</h3>
+        <p>Mapeamos y rediseñamos cada punto de contacto post-venta — desde el onboarding hasta la renovación — con precisión e intencionalidad.</p>
+        <div class="service-tags">
+          <span class="service-tag">Flujos de Onboarding</span>
+          <span class="service-tag">Mapeo de Journey</span>
+          <span class="service-tag">Diseño de Ciclo de Vida</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <h3>Sistemas de Retención y Expansión</h3>
+        <p>Construimos procesos repetibles que reducen el churn, detectan señales de riesgo a tiempo y desbloquean sistemáticamente el upsell y la expansión de ingresos.</p>
+        <div class="service-tags">
+          <span class="service-tag">Prevención de Churn</span>
+          <span class="service-tag">Crecimiento de NRR</span>
+          <span class="service-tag">Health Scoring</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Arquitectura del Equipo de CS</h3>
+        <p>Diseñamos la estructura, los roles, los KPIs y los procesos de escalamiento para que tu equipo de Customer Success opere con claridad y autonomía.</p>
+        <div class="service-tags">
+          <span class="service-tag">Diseño Organizacional</span>
+          <span class="service-tag">Marcos de KPIs</span>
+          <span class="service-tag">Playbooks de CS</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h3>Inteligencia de Datos de Clientes</h3>
+        <p>Implementamos dashboards, scorecards y señales de alerta temprana para que tomes decisiones basadas en comportamiento real — no en intuición.</p>
+        <div class="service-tags">
+          <span class="service-tag">Dashboards de CS</span>
+          <span class="service-tag">Alertas de Riesgo</span>
+          <span class="service-tag">Reportes Ejecutivos</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+        </div>
+        <h3>Coaching y Habilitación de Equipos</h3>
+        <p>Entrenamos a tus CSMs, Account Managers y líderes con frameworks probados para que conduzcan conversaciones de alto valor con los clientes.</p>
+        <div class="service-tags">
+          <span class="service-tag">Entrenamiento de CSM</span>
+          <span class="service-tag">Conversaciones EBR/QBR</span>
+          <span class="service-tag">Frameworks de Valor</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+        </div>
+        <h3>Auditoría y Transformación de CS</h3>
+        <p>Evaluamos tu operación actual de extremo a extremo y entregamos un plan de transformación priorizado con quick wins y mejoras estructurales.</p>
+        <div class="service-tags">
+          <span class="service-tag">Diagnóstico de Operación</span>
+          <span class="service-tag">Hoja de Ruta de CS</span>
+          <span class="service-tag">Benchmarks SaaS</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="services-cta">
+      <a href="https://calendar.app.google/YtzPHUGffMd1rZqU8" target="_blank" rel="noopener noreferrer" class="btn-primary">
+        Explorar todos los servicios
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="section-header">
+      <div class="section-badge">Proceso</div>
+      <h2 class="section-title">Cómo <em style="font-style:italic;color:var(--gold)">trabajamos</em></h2>
+      <p class="section-subtitle">Un proceso claro, sin sorpresas.
