@@ -893,8 +893,7 @@
 
         if (!res.ok) {
           const errBody = await res.json().catch(() => ({}));
-          console.error('ClickUp error', res.status, errBody);
-          throw new Error('ClickUp error ' + res.status);
+          throw new Error(`${res.status}: ${JSON.stringify(errBody)}`);
         }
 
         document.getElementById('contact-form').style.display = 'none';
@@ -903,7 +902,7 @@
         console.error(err);
         btn.disabled = false;
         btn.innerHTML = 'Enviar mensaje <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
-        alert('Hubo un error al enviar. Por favor escríbenos directamente a hola@orbita-co.mx');
+        alert('DEBUG — Error ClickUp:\n' + err.message);
       }
     }
   </script>
