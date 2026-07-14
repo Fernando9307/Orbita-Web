@@ -871,7 +871,6 @@
       const customFields = [];
       if (email)    customFields.push({ id: 'a95ae276-4c9a-48c4-8ac4-984c5b0cc6ef', value: email });
       if (company)  customFields.push({ id: 'ce3804f5-f36f-49cd-bc8b-824e1d7be794', value: company });
-      if (telefono) customFields.push({ id: '4b5f56c9-be3f-40af-b079-5f34a4267770', value: telefono });
       if (industria && industriaUUID[industria])
         customFields.push({ id: 'e2dd3eeb-4b6f-4a53-a4ba-b0ec6d872c73', value: industriaUUID[industria] });
       if (num_colaboradores && equipoUUID[num_colaboradores])
@@ -886,7 +885,10 @@
           },
           body: JSON.stringify({
             name: taskName,
-            description: message ? `💬 Reto principal:\n${message}` : '',
+            description: [
+              telefono ? `📱 Teléfono: ${telefono}` : null,
+              message  ? `💬 Reto principal:\n${message}` : null,
+            ].filter(Boolean).join('\n\n') || '',
             custom_fields: customFields
           })
         });
@@ -902,7 +904,7 @@
         console.error(err);
         btn.disabled = false;
         btn.innerHTML = 'Enviar mensaje <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
-        alert('DEBUG — Error ClickUp:\n' + err.message);
+        alert('Hubo un error al enviar. Por favor escríbenos directamente a hola@orbita-co.mx');
       }
     }
   </script>
