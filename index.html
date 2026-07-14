@@ -46,7 +46,7 @@
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg-primary); }
     ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
-
+    @keyframes spin { to { transform: rotate(360deg); } }
     /* NAVBAR */
     .navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -129,7 +129,6 @@
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
-
     /* HERO */
     .hero {
       min-height: 100vh;
@@ -222,7 +221,6 @@
     .hero-divider { margin-top: 80px; display: flex; align-items: center; justify-content: center; gap: 20px; }
     .hero-divider span { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
     .hero-divider-line { height: 1px; width: 80px; background: var(--border); }
-
     /* MANIFESTO */
     .manifesto {
       padding: 100px 24px;
@@ -262,7 +260,6 @@
     }
     .manifesto-logo { margin-top: 40px; display: flex; align-items: center; justify-content: center; gap: 20px; }
     .manifesto-logo-line { width: 60px; height: 1px; background: var(--border-light); }
-
     /* SERVICES */
     .services { padding: 100px 24px; }
     .section-header { max-width: 600px; margin: 0 auto 64px; text-align: center; }
@@ -306,7 +303,6 @@
       letter-spacing: 0.04em;
     }
     .services-cta { text-align: center; margin-top: 48px; }
-
     /* PROCESS */
     .process { padding: 100px 24px; background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .process-steps { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
@@ -325,7 +321,6 @@
     .step-content h3 { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--text-primary); margin-bottom: 8px; }
     .step-content p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
     .step-duration { display: inline-block; margin-top: 8px; font-size: 0.75rem; color: var(--gold); font-weight: 600; letter-spacing: 0.06em; }
-
     /* WHY ORBITA */
     .why { padding: 100px 24px; }
     .why-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
@@ -338,7 +333,6 @@
     .why-check svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2.5; }
     .why-item h4 { font-family: 'DM Serif Display', serif; font-size: 1.05rem; color: var(--text-primary); margin-bottom: 4px; }
     .why-item p { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6; }
-
     /* CONTACT */
     .contact { padding: 100px 24px; background: var(--bg-secondary); border-top: 1px solid var(--border); }
     .contact-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
@@ -390,11 +384,18 @@
       transition: var(--transition);
       display: flex; align-items: center; justify-content: center; gap: 8px;
     }
-    .form-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .form-submit:hover:not(:disabled) { background: var(--gold-light); transform: translateY(-1px); }
+    .form-submit:disabled { opacity: 0.7; cursor: not-allowed; }
+    .form-submit .spinner {
+      width: 16px; height: 16px;
+      border: 2px solid rgba(10,10,11,0.3);
+      border-top-color: #0A0A0B;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
     .form-success { text-align: center; padding: 40px 20px; color: var(--gold); }
     .form-success h3 { font-size: 1.5rem; margin-bottom: 8px; }
     .form-success p { color: var(--text-secondary); }
-
     /* FOOTER */
     .footer { padding: 48px 24px; border-top: 1px solid var(--border); background: var(--bg-primary); }
     .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
@@ -402,7 +403,6 @@
     .footer-logo img { height: 28px; }
     .footer-logo span { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--text-primary); }
     .footer-copy { font-size: 0.8rem; color: var(--text-muted); }
-
     /* WHATSAPP BUTTON */
     .whatsapp-btn {
       position: fixed;
@@ -421,7 +421,6 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(37,211,102,0.4); }
-
     /* RESPONSIVE */
     @media (max-width: 900px) {
       .services-grid { grid-template-columns: 1fr; }
@@ -437,7 +436,6 @@
   </style>
 </head>
 <body>
-
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
     <div class="navbar-inner" id="navbar-inner">
@@ -463,7 +461,6 @@
       <a href="https://calendar.app.google/YtzPHUGffMd1rZqU8" target="_blank" class="mobile-menu-cta">Agendar Discovery</a>
     </div>
   </nav>
-
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-bg1"></div>
@@ -496,7 +493,6 @@
       </div>
     </div>
   </section>
-
   <!-- MANIFESTO -->
   <section class="manifesto">
     <div class="manifesto-inner">
@@ -514,7 +510,6 @@
       </div>
     </div>
   </section>
-
   <!-- SERVICES -->
   <section class="services" id="services">
     <div class="section-header">
@@ -523,7 +518,6 @@
       <p class="section-subtitle">Trabajamos con SaaS B2B, fintech, healthtech, edtech y cualquier empresa tech-enabled que venda a otras empresas y quiera construir una operación de cliente que retenga y expanda.</p>
     </div>
     <div class="services-grid">
-
       <div class="service-card">
         <div class="service-icon">
           <svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
@@ -536,7 +530,6 @@
           <span class="service-tag">Diseño de Ciclo de Vida</span>
         </div>
       </div>
-
       <div class="service-card">
         <div class="service-icon">
           <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
@@ -549,7 +542,6 @@
           <span class="service-tag">Health Scoring</span>
         </div>
       </div>
-
       <div class="service-card">
         <div class="service-icon">
           <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
@@ -562,7 +554,6 @@
           <span class="service-tag">Playbooks de CS</span>
         </div>
       </div>
-
       <div class="service-card">
         <div class="service-icon">
           <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
@@ -575,7 +566,6 @@
           <span class="service-tag">Reportes Ejecutivos</span>
         </div>
       </div>
-
       <div class="service-card">
         <div class="service-icon">
           <svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
@@ -588,7 +578,6 @@
           <span class="service-tag">Frameworks de Valor</span>
         </div>
       </div>
-
       <div class="service-card">
         <div class="service-icon">
           <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
@@ -601,7 +590,6 @@
           <span class="service-tag">Benchmarks SaaS</span>
         </div>
       </div>
-
     </div>
     <div class="services-cta">
       <a href="https://calendar.app.google/YtzPHUGffMd1rZqU8" target="_blank" rel="noopener noreferrer" class="btn-primary">
@@ -610,7 +598,6 @@
       </a>
     </div>
   </section>
-
   <!-- PROCESS -->
   <section class="process" id="process">
     <div class="section-header">
@@ -619,7 +606,6 @@
       <p class="section-subtitle">Un proceso claro, sin sorpresas.</p>
     </div>
     <div class="process-steps">
-
       <div class="process-step">
         <div class="step-number">01</div>
         <div class="step-content">
@@ -628,7 +614,6 @@
           <span class="step-duration">Semana 1–2</span>
         </div>
       </div>
-
       <div class="process-step">
         <div class="step-number">02</div>
         <div class="step-content">
@@ -637,7 +622,6 @@
           <span class="step-duration">Semana 2–3</span>
         </div>
       </div>
-
       <div class="process-step">
         <div class="step-number">03</div>
         <div class="step-content">
@@ -646,7 +630,6 @@
           <span class="step-duration">Semanas 3–8</span>
         </div>
       </div>
-
       <div class="process-step">
         <div class="step-number">04</div>
         <div class="step-content">
@@ -655,10 +638,8 @@
           <span class="step-duration">Semana 8–10</span>
         </div>
       </div>
-
     </div>
   </section>
-
   <!-- WHY ORBITA -->
   <section class="why" id="why">
     <div class="why-grid">
@@ -672,7 +653,6 @@
         </a>
       </div>
       <div class="why-list">
-
         <div class="why-item">
           <div class="why-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
           <div>
@@ -680,7 +660,6 @@
             <p>No solo asesoramos — hemos vivido dentro de equipos de CS y construido los sistemas nosotros mismos. Hablamos productos digitales con fluidez operativa.</p>
           </div>
         </div>
-
         <div class="why-item">
           <div class="why-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
           <div>
@@ -688,7 +667,6 @@
             <p>La mayoría de los consultores te dan un deck y se van. Nosotros nos quedamos durante la implementación, el coaching y el ajuste hasta que el sistema funcione.</p>
           </div>
         </div>
-
         <div class="why-item">
           <div class="why-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
           <div>
@@ -696,7 +674,6 @@
             <p>Te decimos lo que tu equipo quizás no dice. Directo, claro y basado en datos — no en lo que es cómodo escuchar.</p>
           </div>
         </div>
-
         <div class="why-item">
           <div class="why-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
           <div>
@@ -704,7 +681,6 @@
             <p>Ya sea que estés en $1M o $50M ARR, el trabajo se calibra a lo que realmente importa en tu etapa — no a mejores prácticas genéricas.</p>
           </div>
         </div>
-
         <div class="why-item">
           <div class="why-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
           <div>
@@ -712,7 +688,6 @@
             <p>Definimos el alcance, los tiempos y los resultados desde el inicio. Los engagements están diseñados para hacerte autosuficiente, no dependiente.</p>
           </div>
         </div>
-
         <div class="why-item">
           <div class="why-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
           <div>
@@ -720,11 +695,9 @@
             <p>Conectamos CS con ventas, producto y marketing para que la experiencia del cliente sea coherente de principio a fin.</p>
           </div>
         </div>
-
       </div>
     </div>
   </section>
-
   <!-- CONTACT -->
   <section class="contact" id="contact">
     <div class="contact-inner">
@@ -753,7 +726,6 @@
           </a>
         </div>
       </div>
-
       <form class="contact-form" id="contact-form" onsubmit="submitForm(event)">
         <div class="form-row">
           <div class="form-group">
@@ -806,7 +778,7 @@
           <label>¿Cuál es tu mayor reto hoy?</label>
           <textarea name="message" placeholder="Cuéntanos brevemente..."></textarea>
         </div>
-        <button type="submit" class="form-submit">
+        <button type="submit" class="form-submit" id="form-submit-btn">
           Enviar mensaje
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
         </button>
@@ -817,7 +789,6 @@
       </form>
     </div>
   </section>
-
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
@@ -828,14 +799,12 @@
       <p class="footer-copy">© 2025 Órbita Co. Todos los derechos reservados.</p>
     </div>
   </footer>
-
   <!-- WHATSAPP -->
   <a href="https://wa.me/523318238489" target="_blank" rel="noopener noreferrer" class="whatsapp-btn" aria-label="WhatsApp">
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="white">
       <path d="M16 .5C7.44.5.5 7.44.5 16c0 2.72.7 5.27 1.93 7.48L.5 31.5l8.27-1.9A15.45 15.45 0 0 0 16 31.5C24.56 31.5 31.5 24.56 31.5 16S24.56.5 16 .5zm7.84 21.58c-.33.93-1.63 1.7-2.67 1.93-.71.15-1.64.27-4.76-1.02-4-1.64-6.58-5.7-6.78-5.96-.19-.26-1.6-2.13-1.6-4.07 0-1.93 1-2.88 1.36-3.26.33-.35.72-.44 1-.44.25 0 .49 0 .7.01.23.01.53-.09.83.63.33.77 1.11 2.71 1.21 2.9.1.2.16.43.03.69-.13.26-.2.42-.38.65-.2.22-.41.5-.59.66-.2.19-.4.39-.17.77.23.37 1.02 1.68 2.19 2.72 1.5 1.34 2.77 1.75 3.16 1.95.38.19.6.16.82-.1.23-.26.97-1.13 1.23-1.52.26-.38.52-.32.87-.19.35.13 2.24 1.06 2.63 1.25.38.19.63.28.72.44.1.16.1.93-.23 1.87z"/>
     </svg>
   </a>
-
   <script>
     // Navbar scroll effect
     window.addEventListener('scroll', () => {
@@ -862,13 +831,57 @@
       closeIcon.style.display = 'none';
     }
 
-    // Form submit
-    function submitForm(e) {
+    // Form submit → ClickUp (Pipeline de Prospectos)
+    async function submitForm(e) {
       e.preventDefault();
-      document.getElementById('contact-form').style.display = 'none';
-      document.getElementById('form-success').style.display = 'block';
+      const btn = document.getElementById('form-submit-btn');
+      btn.disabled = true;
+      btn.innerHTML = 'Enviando... <span class="spinner"></span>';
+
+      const data = new FormData(e.target);
+      const name              = data.get('name')              || '';
+      const email             = data.get('email')             || '';
+      const company           = data.get('company')           || '';
+      const telefono          = data.get('telefono')          || '';
+      const industria         = data.get('industria')         || '';
+      const num_colaboradores = data.get('num_colaboradores') || '';
+      const message           = data.get('message')           || '';
+
+      const taskName = company ? `${name} — ${company}` : name;
+
+      const lines = [
+        `📧 Email: ${email}`,
+        telefono          ? `📱 Teléfono: ${telefono}`         : null,
+        company           ? `🏢 Empresa: ${company}`           : null,
+        industria         ? `🏭 Industria: ${industria}`       : null,
+        num_colaboradores ? `👥 Equipo: ${num_colaboradores}`  : null,
+        message           ? `\n💬 Reto principal:\n${message}` : null,
+      ].filter(Boolean);
+
+      try {
+        const res = await fetch('https://api.clickup.com/api/v2/list/901417974229/task', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'pk_222166118_KAX9ADK8RHRZNEYSTPXCFZY5GMXZOPKH'
+          },
+          body: JSON.stringify({
+            name: taskName,
+            description: lines.join('\n')
+          })
+        });
+
+        if (!res.ok) throw new Error('ClickUp error ' + res.status);
+
+        document.getElementById('contact-form').style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } catch (err) {
+        console.error(err);
+        btn.disabled = false;
+        btn.innerHTML = 'Enviar mensaje <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+        alert('Hubo un error al enviar. Por favor escríbenos directamente a hola@orbita-co.mx');
+      }
     }
   </script>
-
 </body>
 </html>
