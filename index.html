@@ -831,7 +831,7 @@
       closeIcon.style.display = 'none';
     }
 
-    // Form submit → ClickUp (Pipeline de Prospectos)
+    // Form submit → ClickUp (Pipeline de Prospectos — custom fields)
     async function submitForm(e) {
       e.preventDefault();
       const btn = document.getElementById('form-submit-btn');
@@ -849,17 +849,36 @@
 
       const taskName = company ? `${name} — ${company}` : name;
 
-      const lines = [
-        `📧 Email: ${email}`,
-        telefono          ? `📱 Teléfono: ${telefono}`         : null,
-        company           ? `🏢 Empresa: ${company}`           : null,
-        industria         ? `🏭 Industria: ${industria}`       : null,
-        num_colaboradores ? `👥 Equipo: ${num_colaboradores}`  : null,
-        message           ? `\n💬 Reto principal:\n${message}` : null,
-      ].filter(Boolean);
+      // Dropdown option → orderindex en ClickUp
+      const industriaIdx = {
+        'SaaS / Software B2B':     0,
+        'Fintech':                  1,
+        'Healthtech / MedTech':     2,
+        'Edtech':                   3,
+        'HRtech / Workforce':       4,
+        'E-commerce / Retail Tech': 5,
+        'Logística / Supply Chain': 6,
+        'MarTech / AdTech':         7,
+        'Otra industria':           8,
+      };
+      const equipoIdx = {
+        '1–10 colaboradores':   0,
+        '11–50 colaboradores':  1,
+        '51–200 colaboradores': 2,
+        '200+ colaboradores':   3,
+      };
+
+      const customFields = [];
+      if (email)    customFields.push({ id: 'a95ae276-4c9a-48c4-8ac4-984c5b0cc6ef', value: email });
+      if (company)  customFields.push({ id: 'ce3804f5-f36f-49cd-bc8b-824e1d7be794', value: company });
+      if (telefono) customFields.push({ id: '4b5f56c9-be3f-40af-b079-5f34a4267770', value: telefono });
+      if (industria && industriaIdx[industria] !== undefined)
+        customFields.push({ id: 'e2dd3eeb-4b6f-4a53-a4ba-b0ec6d872c73', value: industriaIdx[industria] });
+      if (num_colaboradores && equipoIdx[num_colaboradores] !== undefined)
+        customFields.push({ id: '4383a45f-653c-4a78-8e4b-a9aeadf18564', value: equipoIdx[num_colaboradores] });
 
       try {
-        const res = await fetch('https://api.clickup.com/api/v2/list/901417974229/task', {
+        const res = await fetch('https://api.clickup.com/api/v2/list/901418104096/task', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -867,7 +886,8 @@
           },
           body: JSON.stringify({
             name: taskName,
-            description: lines.join('\n')
+            description: message ? `💬 Reto principal:\n${message}` : '',
+            custom_fields: customFields
           })
         });
 
